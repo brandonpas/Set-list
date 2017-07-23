@@ -31,6 +31,7 @@ dependencies {
 
     // Third party libraries
     compile 'com.jakewharton:kotterknife:0.1.0-SNAPSHOT'
+    compile "io.reactivex.rxjava2:rxjava:$libVersions.rxJavaVersion"
 
     // Test Dependencies
     testCompile 'junit:junit:4.12'

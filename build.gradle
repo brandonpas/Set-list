@@ -14,6 +14,12 @@ buildscript {
     }
 }
 
+ext {
+    libVersions = [
+        rxJavaVersion : '2.1.1'
+    ]
+}
+
 allprojects {
     repositories {
         jcenter()
