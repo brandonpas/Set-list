@@ -16,8 +16,9 @@ buildscript {
 
 ext {
     libVersions = [
-        rxJava : '2.1.1',
-        timber : '4.5.1'
+            rxAndroid : '2.0.1',
+            rxJava : '2.1.1',
+            timber : '4.5.1'
     ]
 }
 

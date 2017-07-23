@@ -31,6 +31,7 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
     // Third party libraries
+    compile "io.reactivex.rxjava2:rxandroid:$libVersions.rxAndroid"
     compile "io.reactivex.rxjava2:rxjava:$libVersions.rxJava"
     compile "com.jakewharton.timber:timber:$libVersions.timber"
 
