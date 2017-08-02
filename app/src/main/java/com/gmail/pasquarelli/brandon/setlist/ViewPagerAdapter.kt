@@ -4,9 +4,6 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 
-/**
- * Created by brand on 8/1/2017.
- */
 class ViewPagerAdapter(manager: FragmentManager?) : FragmentPagerAdapter(manager) {
 
     var fragmentList: MutableList<Fragment> = mutableListOf()
