@@ -1,7 +1,7 @@
 package com.gmail.pasquarelli.brandon.setlist
 
 import android.app.Application
-import com.gmail.pasquarelli.brandon.setlist.tab_setlists.SetListsViewModel
+import com.gmail.pasquarelli.brandon.setlist.tab_setlists.viewmodel.SetListsViewModel
 
 /**
  * Created by brand on 8/1/2017.
