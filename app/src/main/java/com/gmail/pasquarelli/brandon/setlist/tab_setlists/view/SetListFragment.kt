@@ -61,7 +61,11 @@ class SetListFragment: Fragment() {
         // Test Button; just to provide an example of using RxJava and observables
         button = test_button
         button?.setOnClickListener {
+            Timber.v("main thread ${Thread.currentThread().id}")
             setListsViewModel.addTestData()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(this::saveMessage)
         }
     }
 
@@ -82,6 +86,10 @@ class SetListFragment: Fragment() {
     fun updateAdapter(list: MutableList<SetList>){
         Timber.v("updateAdapter() called")
         listAdapter.notifyDataSetChanged()
+    }
+
+    fun saveMessage() {
+        Timber.v("Saved on background thread; now back on main thread. Thread ${Thread.currentThread().id}")
     }
 
 }
