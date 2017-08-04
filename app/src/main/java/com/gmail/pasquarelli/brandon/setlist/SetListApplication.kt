@@ -2,16 +2,17 @@ package com.gmail.pasquarelli.brandon.setlist
 
 import android.app.Application
 import com.gmail.pasquarelli.brandon.setlist.tab_setlists.viewmodel.SetListsViewModel
+import timber.log.Timber
 
-/**
- * Created by brand on 8/1/2017.
- */
 class SetListApplication : Application() {
 
-    var setListsViewModel: SetListsViewModel? = null
+    var setListsViewModel = SetListsViewModel()
 
-    fun getSetListsViewmodel() : SetListsViewModel? {
-        if (setListsViewModel == null) setListsViewModel = SetListsViewModel()
+    init {
+        Timber.plant(Timber.DebugTree())
+    }
+
+    fun getSetListsViewmodel() : SetListsViewModel {
         return setListsViewModel
     }
 }

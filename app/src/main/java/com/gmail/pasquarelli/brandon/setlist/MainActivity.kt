@@ -8,29 +8,33 @@ import android.view.MenuItem
 import com.gmail.pasquarelli.brandon.setlist.tab_setlists.view.BandInfoFragmentFragment
 import com.gmail.pasquarelli.brandon.setlist.tab_setlists.view.SetListFragment
 import com.gmail.pasquarelli.brandon.setlist.tab_setlists.view.SongsFragment
-import com.gmail.pasquarelli.brandon.setlist.tab_setlists.viewmodel.SetListsViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(){
 
-    var viewPager: ViewPager? = null
-    var bottomNavigationView: BottomNavigationView? = null
+    // Activity variables
+    lateinit var prevMenuItem: MenuItem
 
-    var setListsViewModel: SetListsViewModel? = null
-    var prevMenuItem: MenuItem? = null
+    // Fragments
+    lateinit var setListsFragment: SetListFragment
+    lateinit var songsFragment: SongsFragment
+    lateinit var bandFragment: BandInfoFragmentFragment
 
-    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+    // Views, adapters, and listeners
+    lateinit var viewPager: ViewPager
+    lateinit var bottomNavigationView: BottomNavigationView
+    val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_set_lists -> {
-                viewPager?.currentItem = 0
+                viewPager.currentItem = 0
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_original_songs -> {
-                viewPager?.currentItem = 1
+                viewPager.currentItem = 1
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_cover_songs -> {
-                viewPager?.currentItem = 2
+                viewPager.currentItem = 2
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -40,43 +44,48 @@ class MainActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
         initViews()
-        initViewModels()
         initViewPager(viewPager)
     }
 
+    /**
+     * Initialize views, attach listeners, etc. here.
+     */
     fun initViews() {
+
+        // View objects
         viewPager = content_viewpager
         bottomNavigationView = navigation
+        prevMenuItem = bottomNavigationView.menu.getItem(0)
+
+        // Fragments
+        setListsFragment = SetListFragment()
+        songsFragment = SongsFragment()
+        bandFragment = BandInfoFragmentFragment()
+
+        // Listeners
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
 
-    fun initViewModels() {
-        setListsViewModel = (application as SetListApplication).getSetListsViewmodel()
-    }
-
-    fun initViewPager(viewPager: ViewPager?) {
+    /**
+     * Setup the view pager and view pager adapter for the fragments. This provides a smooth sliding animation when
+     * switching between the menu items.
+     */
+    fun initViewPager(viewPager: ViewPager) {
         val pagerAdapter: ViewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
-        val setListsFragment: SetListFragment = SetListFragment()
-        val songsFragment: SongsFragment = SongsFragment()
-        val bandFragment: BandInfoFragmentFragment = BandInfoFragmentFragment()
         pagerAdapter.addFragment(setListsFragment)
         pagerAdapter.addFragment(songsFragment)
         pagerAdapter.addFragment(bandFragment)
-        viewPager?.adapter = pagerAdapter
+        viewPager.adapter = pagerAdapter
 
-        viewPager?.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
 
             override fun onPageSelected(position: Int) {
-                if (prevMenuItem != null) {
-                    prevMenuItem?.isChecked = false
-                } else {
-                    bottomNavigationView?.menu?.getItem(0)?.isChecked = false
-                }
-                bottomNavigationView?.menu?.getItem(position)?.isChecked = true
-                prevMenuItem = bottomNavigationView?.menu?.getItem(position)
+                prevMenuItem.isChecked = false
+                bottomNavigationView.menu.getItem(position)?.isChecked = true
+                prevMenuItem = bottomNavigationView.menu.getItem(position)
             }
 
             override fun onPageScrollStateChanged(state: Int) {}
