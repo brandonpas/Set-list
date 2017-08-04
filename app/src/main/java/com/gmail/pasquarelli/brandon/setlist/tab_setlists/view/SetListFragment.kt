@@ -12,8 +12,10 @@ import com.gmail.pasquarelli.brandon.setlist.R
 import com.gmail.pasquarelli.brandon.setlist.SetListApplication
 import com.gmail.pasquarelli.brandon.setlist.tab_setlists.model.SetList
 import com.gmail.pasquarelli.brandon.setlist.tab_setlists.viewmodel.SetListsViewModel
+import io.reactivex.CompletableObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.set_lists_layout.*
 import timber.log.Timber
@@ -65,10 +67,13 @@ class SetListFragment: Fragment() {
             setListsViewModel.addTestData()
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(this::saveMessage)
+                    .subscribe(SaveResult())
         }
     }
 
+    /**
+     * Subscribe to any observables that the SetListFragment needs.
+     */
     fun bind() {
         Timber.v("bind() called")
         compDisposable = CompositeDisposable()
@@ -78,18 +83,34 @@ class SetListFragment: Fragment() {
                         .subscribe(this::updateAdapter))
     }
 
+    /**
+     * Clear all subscriptions.
+     */
     fun unbind() {
         Timber.v("unbind() called")
         compDisposable.dispose()
     }
 
+    /**
+     * Callback for when the setListsViewModel array is updated (observable emits a change).
+     */
     fun updateAdapter(list: MutableList<SetList>){
         Timber.v("updateAdapter() called")
         listAdapter.notifyDataSetChanged()
     }
 
-    fun saveMessage() {
-        Timber.v("Saved on background thread; now back on main thread. Thread ${Thread.currentThread().id}")
+
+
+    inner class SaveResult: CompletableObserver {
+        // Callback for when the setListsViewModel addTestData() method is called and the Completable completes successfully.
+        override fun onComplete() { Timber.v("Saved on background thread; now back on main thread. Thread ${Thread.currentThread().id}") }
+
+        override fun onSubscribe(d: Disposable) {}
+
+        // Callback for when the setListsViewModel addTestData() method is called and the Completable encounters an error.
+        override fun onError(e: Throwable) {
+            Timber.v("Errored on background thread; now back on main thread. Thread ${Thread.currentThread().id}")
+        }
     }
 
 }

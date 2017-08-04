@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.gmail.pasquarelli.brandon.setlist.tab_setlists.viewmodel.SetListsViewModel
 import com.gmail.pasquarelli.brandon.setlist.R
+import com.gmail.pasquarelli.brandon.setlist.utilities.DateTimeFormatUtil
 import kotlinx.android.synthetic.main.set_list_row_item.view.*
 
 
@@ -22,7 +23,9 @@ class SetListAdapter(var viewModel: SetListsViewModel) : RecyclerView.Adapter<Se
     }
 
     override fun onBindViewHolder(holder: SetListAdapter.CustomViewHolder?, position: Int) {
-        holder?.rowItemView?.list_title?.text = viewModel.testArray[position].title
+        holder?.rowItemView?.set_list_title?.text = viewModel.testArray[position].title
+        val itemDate = DateTimeFormatUtil.dateFormatedForLocale(holder?.rowItemView?.context, viewModel.testArray[position].dateTime)
+        holder?.rowItemView?.set_list_date?.text = itemDate
     }
 
     class CustomViewHolder(var rowItemView: View) : RecyclerView.ViewHolder(rowItemView)

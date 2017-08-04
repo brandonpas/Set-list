@@ -3,4 +3,9 @@
     <string name="title_set_lists">SetLists</string>
     <string name="title_songs">Songs</string>
     <string name="title_band_info">Band Info</string>
+
+    <!-- Utilities -->
+    <string name="date_format_util_yesterday">Yesterday %1$s</string>
+    <string name="date_format_util_today">Today %1$s</string>
+    <string name="date_format_util_tomorrow">Tomorrow %1$s</string>
 </resources>

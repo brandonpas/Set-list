@@ -9,7 +9,11 @@ class SetListApplication : Application() {
     var setListsViewModel = SetListsViewModel()
 
     init {
-        Timber.plant(Timber.DebugTree())
+        if(BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        } else {
+            // Initialize Crashlytics
+        }
     }
 
     fun getSetListsViewmodel() : SetListsViewModel {
