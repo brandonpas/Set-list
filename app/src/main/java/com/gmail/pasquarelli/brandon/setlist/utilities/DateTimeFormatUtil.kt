@@ -6,7 +6,7 @@ import com.gmail.pasquarelli.brandon.setlist.R
 import java.util.*
 
 
-object DateTimeFormatUtil {
+class DateTimeFormatUtil {
 
     private val FORMAT_TYPE_OTHER = 0
     private val FORMAT_TYPE_TODAY = 2

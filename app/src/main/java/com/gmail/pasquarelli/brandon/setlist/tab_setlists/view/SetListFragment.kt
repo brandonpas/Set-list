@@ -72,7 +72,7 @@ class SetListFragment: Fragment() {
     }
 
     /**
-     * Subscribe to any observables that the SetListFragment needs.
+     * Subscribe to any observables that the [SetListFragment] needs.
      */
     fun bind() {
         Timber.v("bind() called")
@@ -92,7 +92,7 @@ class SetListFragment: Fragment() {
     }
 
     /**
-     * Callback for when the setListsViewModel array is updated (observable emits a change).
+     * Callback for when the [setListsViewModel] array is updated (observable emits a change).
      */
     fun updateAdapter(list: MutableList<SetList>){
         Timber.v("updateAdapter() called")
