@@ -1,6 +1,6 @@
 package com.gmail.pasquarelli.brandon.setlist.tab_setlists.model
 
-import com.gmail.pasquarelli.brandon.setlist.Song
+import com.gmail.pasquarelli.brandon.setlist.tab_songs.model.Song
 
 /**
  * Created by brand on 8/1/2017.
