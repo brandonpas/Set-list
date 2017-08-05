@@ -4,8 +4,17 @@
     <string name="title_songs">Songs</string>
     <string name="title_band_info">Band Info</string>
 
+    <!-- Set Lists Fragment -->
+    <string name="button_test_view_model">Test View Model</string>
+
+    <!-- Songs Fragment -->
+
+    <!-- Band Info Fragment -->
+
     <!-- Utilities -->
     <string name="date_format_util_yesterday">Yesterday %1$s</string>
     <string name="date_format_util_today">Today %1$s</string>
     <string name="date_format_util_tomorrow">Tomorrow %1$s</string>
+
+    <!-- Test strings -->
 </resources>
