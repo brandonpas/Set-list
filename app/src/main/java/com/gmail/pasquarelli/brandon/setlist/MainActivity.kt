@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.view.ViewPager
 import android.view.MenuItem
-import com.gmail.pasquarelli.brandon.setlist.tab_setlists.view.BandInfoFragmentFragment
+import com.gmail.pasquarelli.brandon.setlist.tab_bandinfo.view.BandInfoFragmentFragment
 import com.gmail.pasquarelli.brandon.setlist.tab_setlists.view.SetListFragment
 import com.gmail.pasquarelli.brandon.setlist.tab_setlists.view.SongsFragment
 import kotlinx.android.synthetic.main.activity_main.*
