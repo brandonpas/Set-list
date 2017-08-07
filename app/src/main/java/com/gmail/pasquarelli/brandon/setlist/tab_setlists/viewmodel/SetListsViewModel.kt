@@ -24,10 +24,9 @@ class SetListsViewModel {
             currentCount++
 
             var date = 1501729200000L
-            if (currentCount == 1) {
-                date = System.currentTimeMillis()
-            }
+            if (currentCount == 1)  date = System.currentTimeMillis()
             val setList2 = SetList(date, "${testArray.size + 1}: Terminal 5")
+
             testArray.add(setList2)
             currentCount++
 

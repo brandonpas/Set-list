@@ -7,12 +7,12 @@
         android:icon="@drawable/ic_nav_set_list_24dp"/>
 
     <item
-        android:id="@+id/navigation_original_songs"
+        android:id="@+id/navigation_songs"
         android:title="@string/title_songs"
         android:icon="@drawable/ic_nav_original_24dp"/>
 
     <item
-        android:id="@+id/navigation_cover_songs"
+        android:id="@+id/navigation_band_info"
         android:title="@string/title_band_info"
         android:icon="@drawable/ic_nav_cover_24dp" />
 

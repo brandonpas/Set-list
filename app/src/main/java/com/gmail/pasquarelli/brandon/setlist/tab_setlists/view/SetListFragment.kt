@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import com.gmail.pasquarelli.brandon.setlist.R
 import com.gmail.pasquarelli.brandon.setlist.SetListApplication
 import com.gmail.pasquarelli.brandon.setlist.tab_setlists.model.SetList
@@ -67,7 +68,7 @@ class SetListFragment: Fragment() {
             setListsViewModel.addTestData()
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(SaveResult())
+                    .subscribe(SetListSaveResult())
         }
     }
 
@@ -99,9 +100,21 @@ class SetListFragment: Fragment() {
         listAdapter.notifyDataSetChanged()
     }
 
+    /**
+     * Standard API to display a toast message
+     *
+     * @param message String to be displayed in the Toast message
+     * @param duration Either [Toast.LENGTH_LONG] or [Toast.LENGTH_SHORT]
+     */
+    fun displayToast(message: String, duration: Int) {
+        Toast.makeText(activity, message, duration).show()
+    }
 
-
-    inner class SaveResult: CompletableObserver {
+    /**
+     * An observer to be used when saving a new set list. Use as a callback to do something when the new list is saved
+     * or encounters an error while saving.
+     */
+    inner class SetListSaveResult : CompletableObserver {
         // Callback for when the setListsViewModel addTestData() method is called and the Completable completes successfully.
         override fun onComplete() { Timber.v("Saved on background thread; now back on main thread. Thread ${Thread.currentThread().id}") }
 
@@ -109,7 +122,9 @@ class SetListFragment: Fragment() {
 
         // Callback for when the setListsViewModel addTestData() method is called and the Completable encounters an error.
         override fun onError(e: Throwable) {
-            Timber.v("Errored on background thread; now back on main thread. Thread ${Thread.currentThread().id}")
+            Timber.v("Error on background thread; now back on main thread. Thread ${Thread.currentThread().id}")
+            Timber.v("Error Message: ${e.message}")
+            displayToast("Gracefully encountered error while saving.", Toast.LENGTH_LONG)
         }
     }
 

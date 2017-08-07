@@ -32,7 +32,8 @@ class SetListRobot {
     }
 
     /**
-     * Verify there is no button on the screen with the text [textToVerify]
+     * Verify there is no button on the screen with the specified text.
+     * Serves as an example for other tests
      */
     fun checkButtonWithTextNotVisible(textToVerify: String): SetListRobot {
         onView(withText(textToVerify)).check(doesNotExist())
@@ -50,9 +51,6 @@ class SetListRobot {
     fun addTestDataToList(expectedAmount: Int): SetListRobot {
         // click the button to add test data to the recycler view
         onView(withText("Test View Model")).perform(click())
-
-        // wait 1 second for the list to populate
-        Thread.sleep(1000L)
         onView(withId(R.id.setListRecyclerview)).check(RecyclerViewItemCountAssertion(expectedAmount))
         return this
     }
@@ -64,6 +62,30 @@ class SetListRobot {
         onView(withId(R.id.setListRecyclerview)).check(RecyclerViewItemCountAssertion(0))
         return this
     }
+
+    /**
+     * Standard robot API to click a button
+     *
+     * @param buttonText Text of the button to click
+     */
+    fun clickButton(buttonText: String): SetListRobot {
+        onView(withText(buttonText)).perform(click())
+        return this
+    }
+
+    /**
+     * Standard robot API to click a button
+     *
+     * @param buttonText Text of the button to click
+     */
+    fun clickButton(buttonId: Int): SetListRobot {
+        onView(withId(buttonId)).perform(click())
+        return this
+    }
+
+
+    fun setListCheck(func: SetListRobot.() -> Unit) = SetListRobot().apply { func() }
+
 
     /**
      * Custom view assertion used to verify the number of items in the RecyclerView

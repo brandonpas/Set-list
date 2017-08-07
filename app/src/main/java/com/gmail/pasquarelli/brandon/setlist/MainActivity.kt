@@ -29,11 +29,11 @@ class MainActivity : AppCompatActivity(){
                 viewPager.currentItem = 0
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_original_songs -> {
+            R.id.navigation_songs -> {
                 viewPager.currentItem = 1
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_cover_songs -> {
+            R.id.navigation_band_info -> {
                 viewPager.currentItem = 2
                 return@OnNavigationItemSelectedListener true
             }
