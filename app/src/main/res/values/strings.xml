@@ -7,7 +7,28 @@
     <!-- Set Lists Fragment -->
     <string name="button_test_view_model">Test View Model</string>
 
+
+
+
     <!-- Songs Fragment -->
+    <string name="button_label_original_songs">Original Songs</string>
+    <string name="button_label_cover_songs">Cover Songs</string>
+    <string name="label_sort_songs_by">Sort</string>
+    <string name="button_new_song">New song</string>
+    <string-array name="sort_songs_by">
+        <item>Title (Asc)</item>
+        <item>Title (Desc)</item>
+        <item>Duration (Asc)</item>
+        <item>Duration (Desc)</item>
+    </string-array>
+
+
+
+    <!-- New Songs Fragment -->
+    <string name="button_cancel_new_song">Cancel</string>
+    <string name="button_save_new_song">Save</string>
+
+
 
     <!-- Band Info Fragment -->
 
@@ -16,5 +37,4 @@
     <string name="date_format_util_today">Today %1$s</string>
     <string name="date_format_util_tomorrow">Tomorrow %1$s</string>
 
-    <!-- Test strings -->
 </resources>

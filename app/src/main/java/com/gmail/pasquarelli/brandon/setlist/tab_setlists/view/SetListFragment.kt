@@ -40,7 +40,7 @@ class SetListFragment: Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setListsViewModel =  (activity.application as SetListApplication).getSetListsViewmodel()
+        setListsViewModel =  (activity.application as SetListApplication).setListsViewModel
     }
 
     override fun onResume() {
