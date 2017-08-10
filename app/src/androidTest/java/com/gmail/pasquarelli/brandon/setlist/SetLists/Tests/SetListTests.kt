@@ -26,14 +26,14 @@ class SetListTests {
 
     // Tests
     @Test
-    fun isTestButtonVisible(){
+    fun isTestButtonVisible() {
         val buttonText = activityRule.activity.applicationContext.resources.getString(R.string.button_test_view_model)
         val robot = SetListRobot()
         robot.checkButtonWithTextVisible(buttonText)
     }
 
     @Test
-    fun isNonExistentButtonVisible(){
+    fun isNonExistentButtonVisible() {
         val buttonText = "This button doesn't exist"
         val robot = SetListRobot()
         robot.checkButtonWithTextNotVisible(buttonText)
@@ -93,8 +93,8 @@ class SetListTests {
     }
 
     fun refreshActivity() {
-        activityRule.activity.setListsFragment.setListsViewModel.testArray.clear()
-        activityRule.activity.setListsFragment.setListsViewModel.currentCount = 0
+        activityRule.activity.mainFragment.setListsFragment.setListsViewModel.testArray.clear()
+        activityRule.activity.mainFragment.setListsFragment.setListsViewModel.currentCount = 0
         activityRule.activity.finish()
         activityRule.launchActivity(Intent())
     }

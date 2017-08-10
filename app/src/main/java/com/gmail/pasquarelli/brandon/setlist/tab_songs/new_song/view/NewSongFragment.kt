@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import com.gmail.pasquarelli.brandon.setlist.R
 import com.gmail.pasquarelli.brandon.setlist.SetListApplication
 import com.gmail.pasquarelli.brandon.setlist.tab_songs.new_song.viewmodel.NewSongViewModel
 import kotlinx.android.synthetic.main.new_song_layout.*
+import kotlinx.android.synthetic.main.viewpager_layout.*
 
 class NewSongFragment : Fragment() {
 
@@ -28,6 +30,11 @@ class NewSongFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         initViews()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        activity.view_pager_constraint_layout.visibility = View.VISIBLE
     }
 
     fun initViews() {

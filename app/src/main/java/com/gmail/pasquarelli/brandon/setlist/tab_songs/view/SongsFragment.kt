@@ -12,6 +12,7 @@ import com.gmail.pasquarelli.brandon.setlist.tab_songs.new_song.view.NewSongFrag
 import com.gmail.pasquarelli.brandon.setlist.tab_songs.viewmodel.SongsViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.songs_layout.*
+import kotlinx.android.synthetic.main.viewpager_layout.*
 
 class SongsFragment : Fragment() {
 
@@ -33,8 +34,10 @@ class SongsFragment : Fragment() {
 
     fun initViews() {
         button_new_song.setOnClickListener {
+
+            activity.view_pager_constraint_layout.visibility = View.INVISIBLE
             val transaction = fragmentManager.beginTransaction()
-            transaction.replace(R.id.content_viewpager, NewSongFragment())
+            transaction.replace(R.id.main_fragment_container, NewSongFragment())
             transaction.addToBackStack(null)
             transaction.commit()
         }
