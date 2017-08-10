@@ -24,7 +24,7 @@ class RecyclerViewItemCountAssertion() : ViewAssertion {
     constructor(match: Matcher<Int>) : this() {
         matcher = match
     }
-    
+
     override fun check(view: View, noViewFoundException: NoMatchingViewException?) {
         if (noViewFoundException != null) {
             throw noViewFoundException

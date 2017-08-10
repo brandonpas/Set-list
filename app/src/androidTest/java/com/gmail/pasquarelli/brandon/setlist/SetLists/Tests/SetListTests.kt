@@ -34,9 +34,9 @@ class SetListTests {
 
     @Test
     fun isNonExistentButtonVisible() {
-        val buttonText = "This button doesn't exist"
+        val buttonText = 198349834
         val robot = SetListRobot()
-        robot.checkButtonWithTextNotVisible(buttonText)
+        robot.checkViewWithIdNotVisible(buttonText)
     }
 
     @Test
