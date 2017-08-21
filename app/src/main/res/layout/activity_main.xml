@@ -20,7 +20,7 @@
         app:menu="@menu/navigation" />
 
     <FrameLayout
-        android:id="@+id/content"
+        android:id="@+id/main_fragment_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginLeft="8dp"
@@ -31,18 +31,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/navigation">
-
-        <TextView
-            android:id="@+id/message"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="@string/title_set_lists" />
-
-    </FrameLayout>
+        app:layout_constraintBottom_toTopOf="@+id/navigation"
+        android:layout_marginBottom="8dp"/>
 
 </android.support.constraint.ConstraintLayout>
