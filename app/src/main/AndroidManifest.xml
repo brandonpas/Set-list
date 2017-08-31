@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 package="com.gmail.pasquarelli.brandon.setlist">
 
+
 <application
     android:name=".SetListApplication"
     android:allowBackup="true"

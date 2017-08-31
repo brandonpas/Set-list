@@ -4,7 +4,11 @@ import android.support.test.espresso.Espresso.*
 import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.assertion.ViewAssertions
 import android.support.test.espresso.assertion.ViewAssertions.matches
+import android.support.test.espresso.matcher.RootMatchers.isFocusable
+import android.support.test.espresso.matcher.ViewMatchers.withText
+import android.support.test.espresso.matcher.ViewMatchers.withId
 import android.support.test.espresso.matcher.ViewMatchers
+import android.support.test.espresso.matcher.RootMatchers.withDecorView
 import org.hamcrest.Matchers.not
 
 /**
@@ -18,7 +22,7 @@ open class Robot {
      * Verify a button is on screen with the text [textToVerify]
      */
     fun checkButtonWithTextVisible(textToVerify: String): Robot {
-        onView(ViewMatchers.withText(textToVerify)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        onView(withText(textToVerify)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
         return this
     }
 
@@ -26,7 +30,7 @@ open class Robot {
      * Verify there is no button on the screen with the specified text.
      */
     fun checkButtonWithTextNotVisible(textToVerify: String): Robot {
-        onView(ViewMatchers.withText(textToVerify)).check(matches(not(ViewMatchers.isDisplayed())))
+        onView(withText(textToVerify)).check(matches(not(ViewMatchers.isDisplayed())))
         return this
     }
 
@@ -34,7 +38,8 @@ open class Robot {
      * Verify there is no view on the screen with the specified view ID.
      */
     fun checkViewWithIdNotVisible(idToVerify: Int): Robot {
-        onView(not(ViewMatchers.withId(idToVerify)))
+        onView(not(withId(idToVerify)))
+                .inRoot(not(isFocusable()))
         return this
     }
 
@@ -42,7 +47,7 @@ open class Robot {
      * Verify the view with the specified view ID is visible on the screen.
      */
     fun checkViewWithIdVisible(idToVerify: Int): Robot {
-        onView(ViewMatchers.withId(idToVerify))
+        onView(withId(idToVerify))
         return this
     }
 
@@ -52,7 +57,7 @@ open class Robot {
      * @param buttonText Text of the button to click
      */
     fun clickButton(buttonText: String): Robot {
-        onView(ViewMatchers.withText(buttonText)).perform(ViewActions.click())
+        onView(withText(buttonText)).perform(ViewActions.click())
         return this
     }
 
@@ -62,7 +67,7 @@ open class Robot {
      * @param buttonText Text of the button to click
      */
     fun clickButton(buttonId: Int): Robot {
-        onView(ViewMatchers.withId(buttonId)).perform(ViewActions.click())
+        onView(withId(buttonId)).perform(ViewActions.click())
         return this
     }
 }
