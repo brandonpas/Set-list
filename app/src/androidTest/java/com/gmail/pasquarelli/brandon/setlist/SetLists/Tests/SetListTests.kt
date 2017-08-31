@@ -9,6 +9,15 @@ import com.gmail.pasquarelli.brandon.setlist.SetLists.Robots.SetListRobot
 import org.junit.Rule
 import org.junit.runner.RunWith
 import org.junit.Test
+import android.view.WindowManager
+import android.content.Context.KEYGUARD_SERVICE
+import android.app.KeyguardManager
+import android.app.Activity
+import android.content.Context
+import android.support.test.annotation.UiThreadTest
+import org.junit.Before
+
+
 
 /**
  * This is where all the tests related to the [com.gmail.pasquarelli.brandon.setlist.tab_setlists.view.SetListFragment]
@@ -23,6 +32,21 @@ class SetListTests {
     // Rules
     @get:Rule
     var activityRule = ActivityTestRule(MainActivity::class.java)
+
+    @UiThreadTest
+    @Before
+    @Throws(Exception::class)
+    fun setUp() {
+        val activity = activityRule.getActivity()
+        activityRule.runOnUiThread(Runnable {
+            val mKG = activity.getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
+            val mLock = mKG.newKeyguardLock(KEYGUARD_SERVICE)
+            mLock.disableKeyguard()
+
+            //turn the screen on
+            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD or WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON or WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON or WindowManager.LayoutParams.FLAG_ALLOW_LOCK_WHILE_SCREEN_ON)
+        })
+    }
 
     // Tests
     @Test
