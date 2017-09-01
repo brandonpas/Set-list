@@ -33,21 +33,6 @@ class SetListTests {
     @get:Rule
     var activityRule = ActivityTestRule(MainActivity::class.java)
 
-    @UiThreadTest
-    @Before
-    @Throws(Exception::class)
-    fun setUp() {
-        val activity = activityRule.getActivity()
-        activityRule.runOnUiThread({
-            val mKG = activity.getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
-            val mLock = mKG.newKeyguardLock(KEYGUARD_SERVICE)
-            mLock.disableKeyguard()
-
-            //turn the screen on
-            activity.window.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD or WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON or WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON or WindowManager.LayoutParams.FLAG_ALLOW_LOCK_WHILE_SCREEN_ON)
-        })
-    }
-
     // Tests
     @Test
     fun isTestButtonVisible() {
