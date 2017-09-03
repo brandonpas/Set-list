@@ -4,11 +4,9 @@ import android.support.test.espresso.Espresso.*
 import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.assertion.ViewAssertions
 import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.RootMatchers.isFocusable
 import android.support.test.espresso.matcher.ViewMatchers.withText
 import android.support.test.espresso.matcher.ViewMatchers.withId
 import android.support.test.espresso.matcher.ViewMatchers
-import android.support.test.espresso.matcher.RootMatchers.withDecorView
 import org.hamcrest.Matchers.not
 
 /**
@@ -39,7 +37,6 @@ open class Robot {
      */
     fun checkViewWithIdNotVisible(idToVerify: Int): Robot {
         onView(not(withId(idToVerify)))
-                .inRoot(not(isFocusable()))
         return this
     }
 
